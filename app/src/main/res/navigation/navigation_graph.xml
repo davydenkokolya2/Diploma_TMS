@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/splashScreenFragment">
+
+    <fragment
+        android:id="@+id/detailsScreenFragment"
+        android:name="com.example.cryptocurrencies.presentation.detailsscreen.DetailsScreenFragment"
+        android:label="DetailsScreenFragment" />
+    <fragment
+        android:id="@+id/mainScreenFragment"
+        android:name="com.example.cryptocurrencies.presentation.mainscreen.MainScreenFragment"
+        android:label="MainScreenFragment" />
+    <fragment
+        android:id="@+id/settingsScreenFragment"
+        android:name="com.example.cryptocurrencies.presentation.settingsscreen.SettingsScreenFragment"
+        android:label="SettingsScreenFragment" />
+    <fragment
+        android:id="@+id/splashScreenFragment"
+        android:name="com.example.cryptocurrencies.presentation.splashscreen.SplashScreenFragment"
+        android:label="SplashScreenFragment" >
+        <action
+            android:id="@+id/action_splashScreenFragment_to_bottomNavigationFragment"
+            app:destination="@id/bottomNavigationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/bottomNavigationFragment"
+        android:name="com.example.cryptocurrencies.presentation.bottomnavigation.BottomNavigationFragment"
+        android:label="BottomNavigationFragment" />
+</navigation>
