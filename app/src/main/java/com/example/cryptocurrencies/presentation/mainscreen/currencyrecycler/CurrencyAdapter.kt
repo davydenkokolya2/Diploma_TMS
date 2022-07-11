@@ -2,6 +2,7 @@ package com.example.cryptocurrencies.presentation.mainscreen.currencyrecycler
 
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
@@ -10,10 +11,7 @@ import coil.load
 import com.example.cryptocurrencies.R
 import com.example.cryptocurrencies.model.CurrencyModel
 
-class CurrencyAdapter : PagingDataAdapter<CurrencyModel, CurrencyViewHolder>(CurrencyModelComparator) {
-
-
-    /*var data: List<CurrencyModel> = data*/
+class CurrencyAdapter(private val onItemClick: (View, CurrencyModel) -> Unit) : PagingDataAdapter<CurrencyModel, CurrencyViewHolder>(CurrencyModelComparator) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CurrencyViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_currency, parent, false)
@@ -30,6 +28,10 @@ class CurrencyAdapter : PagingDataAdapter<CurrencyModel, CurrencyViewHolder>(Cur
         holder.symbolCurrency.text = item?.symbol
         holder.currentPriceCurrency.text = item?.currentPrice.toString()
         holder.marketCupCurrency.text = item?.marketCup.toString()
+
+        holder.itemView.setOnClickListener() {
+            onItemClick(it, item!!)
+        }
     }
 
     object CurrencyModelComparator : DiffUtil.ItemCallback<CurrencyModel>() {

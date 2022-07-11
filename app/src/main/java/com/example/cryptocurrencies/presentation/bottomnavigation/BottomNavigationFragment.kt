@@ -4,6 +4,7 @@ import androidx.fragment.app.commit
 import com.example.cryptocurrencies.R
 import com.example.cryptocurrencies.databinding.BottomNavigationFragmentBinding
 import com.example.cryptocurrencies.presentation.base.BaseFragment
+import com.example.cryptocurrencies.presentation.detailsscreen.DetailsScreenFragment
 import com.example.cryptocurrencies.presentation.mainscreen.MainScreenFragment
 import com.example.cryptocurrencies.presentation.settingsscreen.SettingsScreenFragment
 

@@ -8,8 +8,10 @@ import com.example.cryptocurrencies.data.repository.SamplePagingSource
 import com.example.cryptocurrencies.data.storage.CryptoCurrencyDB
 import com.example.cryptocurrencies.data.storage.CryptoCurrencyDBImpl
 import com.example.cryptocurrencies.data.storage.room.AppDatabase
+import com.example.cryptocurrencies.presentation.mainscreen.CurrencyViewModel
 import com.example.cryptocurrencies.presentation.mainscreen.ListOfCurrenciesViewModel
 import org.koin.android.ext.koin.androidContext
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.androidx.viewmodel.dsl.viewModelOf
 import org.koin.core.context.GlobalContext.startKoin
 import org.koin.core.module.Module
@@ -22,14 +24,14 @@ class MyApp : Application() {
 
     private val dbModule: Module
         get() = module {
-            single<CryptoCurrencyDB>{CryptoCurrencyDBImpl(get())}
+            single<CryptoCurrencyDB> { CryptoCurrencyDBImpl(get()) }
 
             single {
 
                 Room.databaseBuilder(
                     get(),
                     AppDatabase::class.java, "app-database"
-                ).build()
+                ).fallbackToDestructiveMigration().build()
             }
         }
 
@@ -53,6 +55,7 @@ class MyApp : Application() {
     private val viewModelModule: Module
         get() = module {
             viewModelOf(::ListOfCurrenciesViewModel)
+            viewModelOf(::CurrencyViewModel)
         }
 
     override fun onCreate() {
